@@ -19,8 +19,11 @@ def HPart(a,l,r):
   a[l], a[j] = a[j], a[l]
   return j
 
-def QSort(a,l,r):
+def qSort(a,l,r):
   if(l < r):
     s = HPart(a,l,r)
-    QSort(a,l,s-1)
-    QSort(a,s+1,r)
+    qSort(a,l,s-1)
+    qSort(a,s+1,r)
+
+def QSort(a):
+  qSort(a, 0, len(a)-1)
