@@ -9,11 +9,13 @@ def HPart(a,l,r):
     j -= 1
     while(i < len(a) and a[i] < p):
       i += 1
-    while(j > 1 and a[j] > p):
+    while(j > 0 and a[j] > p):
       j -= 1
-    a[i], a[j] = a[j], a[i]
+    if(i < len(a) and j > 0):
+      a[i], a[j] = a[j], a[i]
 
-  a[i], a[j] = a[j], a[i]
+  if(i < len(a) and j > 0):
+    a[i], a[j] = a[j], a[i]
   a[l], a[j] = a[j], a[l]
   return j
 

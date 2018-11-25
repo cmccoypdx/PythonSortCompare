@@ -28,7 +28,7 @@ def merge(a, l, r):
 def MSort(a):
   
   if len(a) > 1:
-    m = len(a)/2
+    m = len(a)//2
     l = a[:m]
     r = a[m:]
 
@@ -36,4 +36,3 @@ def MSort(a):
     MSort(r)
     a = merge(a, l, r)
 
-  return a
