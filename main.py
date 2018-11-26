@@ -6,18 +6,49 @@ from Generator import GenArray
 from Generator import GenPayload
 from Timer import TimeFunc 
 
-c = GenArray(10)
-d = GenPayload()
+def benchmarkPass(alg, payload):
+  ndict = {
+      10      : 0.0,
+      100     : 0.0,
+      1000    : 0.0,
+      10000   : 0.0,
+      100000  : 0.0,
+      1000000 : 0.0
+    }
 
-def benchmark(alg, payload):
   for arr in payload:
-    print(len(arr))
-    print(TimeFunc(alg, arr))
+    ndict[len(arr)] = TimeFunc(alg, arr)
 
-benchmark(SSort, copy.deepcopy(d[0:4]))
-benchmark(MSort, copy.deepcopy(d))
-benchmark(QSort, copy.deepcopy(d))
-#print(d[0:4])
+  return ndict
 
-#print(TimeFunc(MSort, copy.deepcopy(c)))
-#print(TimeFunc(QSort, copy.deepcopy(c),0,len(c)-1))
+def benchmark(alg, parr):
+  ndict = {
+      10      : 0.0,
+      100     : 0.0,
+      1000    : 0.0,
+      10000   : 0.0,
+      100000  : 0.0,
+      1000000 : 0.0
+    }
+
+  for payload in parr:
+    tempdict = benchmarkPass(alg, payload)
+    for n in tempdict:
+      ndict[n] += tempdict[n]
+  return ndict
+
+PayloadArray = []
+SmallPayloadArray = []
+for _ in range(10):
+  p = GenPayload()
+  PayloadArray.append(p)
+  SmallPayloadArray.append(p[0:4])
+
+SDict = benchmark(SSort, SmallPayloadArray)
+MDict = benchmark(MSort, copy.deepcopy(PayloadArray))
+QDict = benchmark(QSort, copy.deepcopy(PayloadArray))
+
+print(SDict)
+print(MDict)
+print(QDict)
+  
