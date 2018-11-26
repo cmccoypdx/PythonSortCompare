@@ -2,18 +2,18 @@ import copy
 from SelectionSort import SSort
 from MergeSort import MSort
 from QuickSort import QSort
-from Generator import GenArray
 from Generator import GenPayload
 from Timer import TimeFunc 
 
 def benchmarkPass(alg, payload):
   ndict = {
-      10      : 0.0,
-      100     : 0.0,
-      1000    : 0.0,
-      10000   : 0.0,
-      100000  : 0.0,
-      1000000 : 0.0
+      10       : 0.0,
+      100      : 0.0,
+      1000     : 0.0,
+      10000    : 0.0,
+      100000   : 0.0,
+      1000000  : 0.0,
+      10000000 : 0.0
     }
 
   for arr in payload:
@@ -23,12 +23,13 @@ def benchmarkPass(alg, payload):
 
 def benchmark(alg, parr):
   ndict = {
-      10      : 0.0,
-      100     : 0.0,
-      1000    : 0.0,
-      10000   : 0.0,
-      100000  : 0.0,
-      1000000 : 0.0
+      10       : 0.0,
+      100      : 0.0,
+      1000     : 0.0,
+      10000    : 0.0,
+      100000   : 0.0,
+      1000000  : 0.0,
+      10000000 : 0.0
     }
 
   for payload in parr:
@@ -47,6 +48,10 @@ for _ in range(10):
 SDict = benchmark(SSort, SmallPayloadArray)
 MDict = benchmark(MSort, copy.deepcopy(PayloadArray))
 QDict = benchmark(QSort, copy.deepcopy(PayloadArray))
+
+SDict = {k : v / 10 for k, v in SDict.items()}
+MDict = {k : v / 10 for k, v in MDict.items()}
+QDict = {k : v / 10 for k, v in QDict.items()}
 
 print(SDict)
 print(MDict)

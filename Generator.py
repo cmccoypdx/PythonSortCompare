@@ -8,7 +8,7 @@ def GenArray(size):
 
 def GenPayload():
   p = []
-  sizes = [ 10, 100, 1000, 10000, 100000, 1000000 ]
+  sizes = [ 10, 100, 1000, 10000, 100000, 1000000, 10000000 ]
   for size in sizes:
     p.append(GenArray(size))
   return p 
